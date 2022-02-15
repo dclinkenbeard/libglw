@@ -33,6 +33,22 @@ const float CUBE_Z_TRANSLATION = -20.f;
 int bg_width = 1280, bg_height = 900;
 int score = 0;
 
+//DAC investigating how mouse controls work
+//TODO: next steps findout where the mouse listener is defined.
+void mouse_down(int k)
+{
+    switch((mouse_button) k){
+        case MOUSE_BTN_LEFT:
+            wormy_dir.x = 5.0f;
+            wormy_dir.y = -5.0f;
+            break;
+        case MOUSE_BTN_RIGHT:
+            wormy_dir.x = -5.0f;
+            wormy_dir.y = 5.0f;
+            break;
+    }
+}
+
 void key_down(int k)
 {
     switch ((key) k) {
@@ -109,6 +125,8 @@ int main(int argc, char *argv[])
         };
         a = new app(spec);
         a->on_key_down(key_down);
+
+        a->on_mouse_button_down(mouse_down);
 
         auto *s = new scene;
         a->attach_scene(s);
