@@ -9,6 +9,10 @@
 
 using namespace glw;
 
+/**
+ * This gives us the size of the wormy. I changed the value of r to 2
+ * and it made the wormy object 2x its original size
+ */
 class wormy : public drawable {
 public:
     virtual ~wormy();
