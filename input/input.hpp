@@ -9,8 +9,27 @@
 
 #include <functional>
 
+
+
+/**
+ * the "cb" at the end of our variables makes me believe they might be callback functions
+ *
+ *
+ * DEFINITION:
+ * A callback function is a function passed into another function as an argument, which is then
+ * invoked inside the outer function to complete some kind of routine or action.
+ *
+ *
+ * One reason to use callbacks is to write generic code which is independent from the logic
+ * in the called function and can be reused with different callbacks.
+ *
+ */
 namespace glw {
 
+/**
+ * These are here to obtain the desired behaviour when a certain key is pressed.
+ * If the player chooses to change direction, the object can change its direction
+ */
 using key_down_cb = std::function<void(int)>;
 using key_up_cb = std::function<void(int)>;
 using mouse_button_down_cb = std::function<void(int)>;
