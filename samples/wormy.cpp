@@ -22,7 +22,7 @@ wormy::wormy(int vertex_count, int r)
     /**
      * Changing the vert_size to anything greater than 3 will not display the wormy image
      * Changing the vert_size to 2 or even 1 will display a tiny line that moves around
-     * just as the wormy does.
+     * just as the wormy does
      */
      this->positions_ = vertex_buffer::create(p.data(), p.size(), 3);
 

@@ -28,7 +28,7 @@
 using key_down_cb = std::function<void(int)>;
 /**
  * These are here to obtain the desired behaviour when a certain key is pressed.
- * If the player chooses to change direction, the object can change its direction
+ * If the player chooses to change direction, the object can change its direction.
  */
  using key_up_cb = std::function<void(int)>;
 using mouse_button_down_cb = std::function<void(int)>;

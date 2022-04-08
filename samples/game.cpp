@@ -24,7 +24,7 @@ vector<wormy *> worm;   // I think here we have a vector that draws the worm
 
 /**
  * this gives us the scene, what side of the camera
- * is giving us. cameraUp is just up from the camera's perspective
+ * is giving us. cameraUp is just up from the camera's perspective.
  */
  auto cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 auto cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
@@ -34,12 +34,12 @@ auto cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
  * changing vec3's x value go anything greater than 4.5 and the initial speed of wormy will
  * either speed up or slow down depending on the value we choose.
  * Wormy always begins by moving in the right direction, but when changing the value to a negative,
- * wormy initiates in the left direction
+ * wormy initiates in the left direction.
  */
 auto wormy_dir = glm::vec3(4.5f, 0.f, 0.f);
 /**
  * changing the any of the values x, y or z will change the size of our wormy object,
- * when making the change, however, the wormy will not wrap around the screen
+ * when making the change, however, the wormy will not wrap around the screen.
  */
  auto wormy_scale = glm::vec3(35.f, 35.f, 35.f);
 
