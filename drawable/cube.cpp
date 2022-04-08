@@ -141,7 +141,17 @@ cube::cube()
             0.0f, 1.0f, 0.0f,
     };
 
+    /**
+     * changing the vert_size value in this->positions_ from 3 to 5 causes
+     * the disappearance of the cube. No cubes show up on the screen
+     * Changing the value from 3 to 2 displays a very thin slice of a square rotating,
+     * that eventually disappears
+     */
     this->positions_ = vertex_buffer::create(p.data(), p.size(), 3);
+    /**
+     * Any value that is 2, 3 or 4 will appear on the screen without any changes,
+     * values outside of those listed will result in a blank screen without rotating cubes
+     */
     this->uvs_ = vertex_buffer::create(uv.data(), uv.size(), 2);
     this->normals_ = vertex_buffer::create(n.data(), n.size(), 3);
 
