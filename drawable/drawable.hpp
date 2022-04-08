@@ -14,6 +14,7 @@
 
 namespace glw {
 
+    // definition for topology data types
 enum class topology {
     POINTS,
     LINES,
@@ -25,33 +26,67 @@ enum class topology {
 };
 
 class drawable {
+// public declarations of class elements
 public:
+    // drawable object destructor
     virtual ~drawable() = default;
 
+    /**
+     * default draw method meant to be overridden by specific
+     * drawable object function
+     */
     virtual void draw() = 0;
 
+    /**
+     * getter and setter for the shaders needed for drawable
+     * objects
+     */
     inline shader *get_shader() const { return this->shader_; }
     inline void set_shader(shader *s) { this->shader_ = s; }
 
+    /*
+     * getter and setter for materials used for drawable
+     * objects
+     */
     inline void set_model_mat(const glm::mat4 &m) { this->model_ = m; }
     inline glm::mat4 get_model_mat() const { return this->model_; }
 
+    /*
+     * function to translate objects in 3D space
+     * i.e. moving them about without rotation
+     * or scaling
+     */
     inline void translate(const glm::vec3 &v)
     {
         this->model_ = glm::translate(this->model_, v);
     }
 
+    /*
+     * function to rotate objects in 3D space
+     * i.e. changing their orientation without translating
+     * or scaling
+     */
     inline void rotate(float deg, const glm::vec3 &v)
     {
         this->model_ = glm::rotate(this->model_, glm::radians(deg), v);
     }
 
-    inline void scale(const glm::vec3 &v)
+        /*
+         * function to change the size of an object
+         * i.e. make an object bigger or smaller without
+         * translating or scaling
+         */
+        inline void scale(const glm::vec3 &v)
     {
         this->model_ = glm::scale(this->model_, v);
     }
 
-    inline glm::vec3 get_position()
+        /*
+         * getter for position of a drawable object. returns
+         * specific coordinates from matrix that represents location
+         * in 3D space
+         */
+        inline glm::vec3 get_position()
     {
         return {
             this->model_[3][0],
@@ -60,13 +95,20 @@ public:
         };
     }
 
+// declaration of protected class elements
 protected:
+    // object of enum class defined above
     topology topology_;
+    // matrix object representing the drawable
     glm::mat4 model_;
+    // shader object used in fragment and vertex assignment
     shader *shader_;
 
+    // index buffer object
     index_buffer *ib_;
+    //vertex array object
     vertex_array *va_;
+    //vertex buffer objects
     vertex_buffer *positions_, *uvs_, *normals_;
 };
 

@@ -19,7 +19,12 @@ wormy::wormy(int vertex_count, int r)
         p.push_back(r * glm::sin(rads));
     }
 
-    this->positions_ = vertex_buffer::create(p.data(), p.size(), 3);
+    /**
+     * Changing the vert_size to anything greater than 3 will not display the wormy image
+     * Changing the vert_size to 2 or even 1 will display a tiny line that moves around
+     * just as the wormy does.
+     */
+     this->positions_ = vertex_buffer::create(p.data(), p.size(), 3);
 
     this->ib_ = nullptr;
     this->va_ = vertex_array::create();
