@@ -1,4 +1,4 @@
-//
+ //
 // Created by Garrett on 11/5/2021.
 //
 
@@ -20,19 +20,46 @@ using std::vector;
 using std::map;
 
 app *a;
-vector<wormy *> worm;
+vector<wormy *> worm;   // I think here we have a wormy object named worm
 
+/**
+ * this gives us the scene, what side of the camera
+ * is giving us. cameraUp is just up from the camera's perspective
+ */
 auto cameraPos = glm::vec3(0.0f, 0.0f, 3.0f);
 auto cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
 auto cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
+/**
+ * changing vec3's x value go anything greater than 4.5 and the initial speed of wormy will
+ * either speed up or slow down depending on the value we choose.
+ * Wormy always begins by moving in the right direction, but when changing the value to a negative,
+ * wormy initiates in the left direction
+ */
 auto wormy_dir = glm::vec3(4.5f, 0.f, 0.f);
+/**
+ * changing the any of the values x, y or z will change the size of our wormy object,
+ * when making the change, however, the wormy will not wrap around the screen
+ */
 auto wormy_scale = glm::vec3(35.f, 35.f, 35.f);
 
 const float CUBE_Z_TRANSLATION = -20.f;
+/**
+ * bg_width and bg_height is the size of the screen that appears when we begin the game
+ */
 int bg_width = 1280, bg_height = 900;
+
+/**
+ * Score starting at 0 allows us to collect up to 5 cubes, whenever score is increased to n,
+ * we are only able to collect 5-n cubes.
+ */
 int score = 0;
 
+/**
+ * This function is what helps us move the worm around
+ * Depending on the key we enter, if up, down, left or right, that
+ * will be taken as input and
+ */
 void key_down(int k)
 {
     switch ((key) k) {
@@ -58,6 +85,9 @@ void key_down(int k)
     }
 }
 
+/**
+ * Self explanatory, moving wormy wraps the screen.
+ */
 void wrap(glm::vec3 w_pos)
 {
     glm::vec3 t(0.f);
@@ -211,6 +241,10 @@ int main(int argc, char *argv[])
                 auto c_pos = it.second->get_position();
 
                 if (are_overlapping(w_pos, c_pos)) {
+                    /**
+                     * This is what is allowing us to only collect up to 5 cubes before ending the game
+                     * if the value 5 was to increase, we can play the game for a longer period of time
+                     */
                     if (++score > 5)
                         a->close();
 
